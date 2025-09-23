@@ -226,6 +226,7 @@
       "mpv": "🎵",
       "firefox": "󰺕"
     },
+    "title-len": 50,
     "status-icons": {
       "paused": "󱖒"
     }

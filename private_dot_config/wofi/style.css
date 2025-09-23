@@ -83,17 +83,17 @@ window {
 }
 
 #entry:focus {
-  background: rgb(249, 208, 175);
+  background: rgb(62, 143, 176);
   color: rgb(11, 12, 15);
 }
 
 #entry:selected {
-  background: rgb(249, 208, 175);
+  background: rgb(62, 143, 176);
   color: rgb(11, 12, 15);
 }
 
 #text:selected {
-  background: rgb(249, 208, 175);
+  background: rgb(62, 143, 176);
   color: rgb(11, 12, 15);
 
 }
