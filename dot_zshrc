@@ -23,6 +23,7 @@ antigen bundle python
 antigen bundle uv
 antigen bundle vscode
 antigen bundle poetry
+antigen bundle terraform
 
 # Add syntax highlight and suggestion
 antigen bundle zsh-users/zsh-autosuggestions

@@ -33,7 +33,8 @@ read_only = " 󰌾"
 [docker_context]
 symbol = " "
 only_with_files = true
-detect_files = [ "docker-compose.yml", "docker-compose.yaml", "Dockerfile" ]
+detect_files = [ "docker-compose.yml", "docker-compose.yaml", "Dockerfile", "compose.yaml", "compose.yml" ]
+detect_folders = [ "docker" ]
 disabled = false
 
 [elixir]
