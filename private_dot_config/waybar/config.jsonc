@@ -35,7 +35,7 @@
   "custom/logo": {
     "format": "",
     "tooltip": false,
-    "on-click": "killall rofi || .config/rofi/scripts/powermenu_t1"
+    "on-click": "killall rofi || $HOME/.config/rofi/scripts/powermenu_t1"
   },
   // Modules configuration
   "hyprland/workspaces": {
