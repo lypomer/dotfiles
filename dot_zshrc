@@ -236,6 +236,4 @@ fi
 
 fpath+=~/.zfunc; autoload -Uz compinit; compinit
 
-[[ -s "/home/clement/.gvm/scripts/gvm" ]] && source "/home/clement/.gvm/scripts/gvm"
-
 [[ -s "/home/unhidden/.gvm/scripts/gvm" ]] && source "/home/unhidden/.gvm/scripts/gvm"
