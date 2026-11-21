@@ -147,6 +147,8 @@ for i = 1, NUM_WPM do
     local key = i % 10
     hl.bind(mainMod .. " + " .. digitCode(key), hl.dsp.focus({ workspace = i }))
 end
+-- Gaming
+hl.bind(mainMod .. " + G" , hl.dsp.focus({ workspace = "name:gaming" }))
 -- Relative
 for i = 1, NUM_WPM do
     local key = i % 10
