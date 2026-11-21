@@ -1,19 +1,26 @@
 [accessibility]
-ui_scale = 1.20
+ui_scale = 1.0000000074505806
 
 [bar.default]
-center = [ "workspaces", "spacer_1", "active_window" ]
-concave_edge_corners = true
-end = [ "media", "spacer_1", "tray", "notifications", "network", "volume", "session" ]
-margin_edge = 0
-margin_ends = 0
+background_opacity = 0.89999997988343239
+center = [ "notifications", "clock" ]
+concave_edge_corners = false
+end = [ "spacer_1", "group:g1", "tray", "network", "bluetooth", "volume", "battery", "session" ]
+font_scale = 0.79999998956918716
+margin_edge = 3
+margin_ends = 6
+margin_opposite_edge = 3
 radius_bottom_left = 12
 radius_bottom_right = 12
-radius_top_left = 0
-radius_top_right = 0
-scale = 1.10
-start = [ "launcher", "clock", "spacer_1", "group:g1" ]
-thickness = 35
+radius_top_left = 12
+radius_top_right = 12
+scale = 1.1000000000000001
+start = [ "workspaces", "spacer_1", "media" ]
+thickness = 30
+
+    [bar.default.monitor.dp1]
+    enabled = false
+    match = "DP-1"
 
     [[bar.default.capsule_group]]
     border = ""
@@ -23,9 +30,87 @@ thickness = 35
     opacity = 1.0
     padding = 6.0
 
-    [bar.default.monitor.dp1]
-    match = "DP-1"
-    enabled = false
+[desktop_widgets]
+schema_version = 2
+widget_order = []
+
+    [desktop_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [desktop_widgets.widget]
+
+[lockscreen]
+transition = [ "zoom" ]
+
+[lockscreen_widgets]
+enabled = false
+schema_version = 2
+widget_order = [ "lockscreen-login-box@eDP-1", "lockscreen-login-box@DP-1" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-1"]
+    box_height = 196.0
+    box_width = 720.0
+    cx = 1720.0
+    cy = 1258.0
+    output = "DP-1"
+    placement_height = 1440.0
+    placement_width = 3440.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-1".settings]
+        background_color = "surface_container"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_media_controls = true
+        show_password_reveal = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 720.0
+    cy = 778.0
+    output = "eDP-1"
+    placement_height = 960.0
+    placement_width = 1440.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+        background_color = "surface_container"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_media_controls = true
+        show_password_reveal = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
 
 [shell]
 clipboard_image_action_command = "swash --stdin --name \"swash-$(date +'%Y-%m-%d_%H:%M:%S').png\""
@@ -86,16 +171,34 @@ settings_show_advanced = true
 gpu_poll_seconds = 2
 
 [theme]
+builtin = "Noctalia"
+community_palette = "Monochrome"
 mode = "dark"
-source = "wallpaper"
+source = "community"
 wallpaper_scheme = "m3-tonal-spot"
 
     [theme.templates]
-    builtin_ids = [ "btop", "gtk3", "gtk4", "kcolorscheme", "kitty", "qt"]
+    builtin_ids = [ "btop", "gtk3", "gtk4", "kcolorscheme", "kitty", "qt" ]
+
+[wallpaper]
+directory = "/mnt/home/Pictures/_misc/Wallpaper"
+fill_mode = "stretch"
+
+    [wallpaper.default]
+    path = "/mnt/home/Pictures/Wallpaper/philippe-oursel-ZAF-rhUyESY-unsplash.jpg"
+
+    [wallpaper.last]
+    path = "/mnt/home/Pictures/Wallpaper/philippe-oursel-ZAF-rhUyESY-unsplash.jpg"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/mnt/home/Pictures/Wallpaper/philippe-oursel-ZAF-rhUyESY-unsplash.jpg"
+
+[widget.battery]
+hide_when_full = true
 
 [widget.clock]
 color = "secondary"
-format = "{:%H:%M %A %m/%d/%y}"
+format = "{:%H:%M %d/%m}"
 
 [widget.launcher]
 color = "secondary"
@@ -116,31 +219,37 @@ color = "error"
 [widget.spacer_1]
 type = "spacer"
 
-[widget.temp]
-show_value = false
-
 [widget.sysmon_2]
-glyph = "gpu-usage"
+glyph = "cpu"
 show_value = false
-stat = "gpu_temp"
+stat = "cpu_usage"
 type = "sysmon"
+visualization = "graph"
 
 [widget.sysmon_3]
-glyph = "cpu-2"
+glyph = "container"
 stat = "ram_used"
 type = "sysmon"
+
+[widget.temp]
+show_value = false
 
 [widget.tray]
 capsule = true
 capsule_fill = "on_secondary"
+drawer = true
+pinned = [ "proton.vpn.app.gtk" ]
 
 [widget.volume]
 color = "secondary"
+show_label = false
 
 [widget.workspaces]
-active_pill_size = 2.5
-capsule = true
+active_pill_size = 2.0
+capsule = false
 capsule_fill = "on_primary"
+font_weight = 700
+hide_when_empty = true
 inactive_pill_size = 1.0
-pill_scale = 0.80
-show_labels = false
+pill_scale = 0.5
+show_labels = true
