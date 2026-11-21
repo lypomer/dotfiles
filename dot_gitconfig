@@ -1,19 +1,19 @@
 [user]
-	name =
-	email =
+  name =
+  email =
 [core]
-	editor = code --wait
+  editor = zed --wait
 [diff]
-    tool = default-difftool
+  tool = default-difftool
 [difftool "default-difftool"]
-    cmd = code --wait --diff $LOCAL $REMOTE
+  cmd = zed --wait --diff $LOCAL $REMOTE
 [merge]
-  tool = code
-[mergetool "code"]
-  cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
+  tool = zed
+[mergetool "zed"]
+  cmd = zed --wait --merge $REMOTE $LOCAL $BASE $MERGED
 [alias]
   gud = help
 [init]
-	defaultBranch = main
+  defaultBranch = main
 [fetch]
-	prune = true
+  prune = true
