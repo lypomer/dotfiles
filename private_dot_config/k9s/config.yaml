@@ -12,7 +12,7 @@ k9s:
     crumbsless: false
     reactive: false
     noIcons: false
-    skin: github
+    skin: catpuccin-espresso
   skipLatestRevCheck: false
   disablePodCounting: false
   shellPod:
@@ -38,5 +38,5 @@ k9s:
       critical: 90
       warn: 70
     memory:
-      critical: 90
-      warn: 70
+      critical: 95
+      warn: 90

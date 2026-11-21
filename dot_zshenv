@@ -1,12 +1,21 @@
-# User local bin folder
-path=($HOME/.local/bin $path)
+# User local bins folders
+path+=$HOME/bin
+path+=$HOME/.local/bin
 
 # Yarn global bin
-path=($(yarn global bin) $path)
+# path=($(yarn global bin) $path)
 
 # Cargo global bin
 path+=$HOME/.cargo/bin
 
+# Golang global bin
+path+=$HOME/go/bin
+
 # Kubernetes
-path=(${KREW_ROOT:-$HOME/.krew}/bin $path)
-export KUBE_EDITOR='code --wait'
+path+=${KREW_ROOT:-$HOME/.krew}/bin
+export KUBE_EDITOR='zed --wait'
+
+# Tfenv
+# path+=$HOME/.tfenv/bin
+# . "$HOME/.cargo/env"
+

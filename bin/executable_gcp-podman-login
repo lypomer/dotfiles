@@ -1,0 +1,8 @@
+#!/bin/bash
+
+region=${1:-"europe-west1"}
+
+echo "🦭 Login into ${region} docker registry..."
+output=$(gcloud auth print-access-token | podman login -u oauth2accesstoken --password-stdin https://${region}-docker.pkg.dev 2>&1) \
+  && echo "🎉 ${output}" \
+  || echo "❌ ${output}"

@@ -1,43 +1,162 @@
-# --------------------------------- antigen --------------------------------- #
-# Activate antigen
-source $HOME/.antigen/antigen.zsh
+# -------------------------------- oh-my-zsh -------------------------------- #
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-# Use OMZ repo
-antigen use oh-my-zsh
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
 
-# Add plugins
-antigen bundle archlinux
-antigen bundle aws
-antigen bundle git
-antigen bundle docker
-antigen bundle docker-compose
-antigen bundle fzf
-antigen bundle gcloud
-antigen bundle golang
-antigen bundle helm
-antigen bundle kubectl
-antigen bundle kubectl-autocomplete
-antigen bundle kubectx
-antigen bundle pip
-antigen bundle python
-antigen bundle uv
-antigen bundle vscode
-antigen bundle poetry
-antigen bundle terraform
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time Oh My Zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME=""
 
-# Add syntax highlight and suggestion
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle zsh-users/zsh-syntax-highlighting
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
-# Antigen apply
-antigen apply
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
 
-# Create completion folder if missing, see: https://github.com/zsh-users/antigen/issues/688
-# mkdir -p $HOME/.antigen/bundles/robbyrussell/oh-my-zsh/cache/completions
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+    argocd
+    common-aliases
+    docker
+    docker-compose
+    fnm
+    fzf
+    gcloud
+    gh
+    git
+    golang
+    k9s
+    helm
+    kubectl
+    # kubectl-autocomplete
+    kubectx
+    pip
+    poetry
+    podman
+    pre-commit
+    python
+    redis-cli
+    tailscale
+    ubuntu
+    uv
+    vscode
+    terraform
+    yarn
+    zoxide
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='nvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch $(uname -m)"
+
+# Set personal aliases, overriding those provided by Oh My Zsh libs,
+# plugins, and themes. Aliases can be placed here, though Oh My Zsh
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # ---------------------------------- shell ---------------------------------- #
 # Starship
 eval "$(starship init zsh)"
+
+function k8s(){
+    is_on=$(env | grep "STARSHIP_KUBE_TERMINAL")
+
+    if [ ${is_on} ];then
+        unset STARSHIP_KUBE_TERMINAL
+    else
+        export STARSHIP_KUBE_TERMINAL=1
+    fi
+}
+
+# fzf
+source <(fzf --zsh)
+
+# history
+HISTFILE=${HOME}/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
 
 # fnm
 eval "$(fnm env --use-on-cd --version-file-strategy=recursive --shell zsh)"
@@ -45,73 +164,38 @@ eval "$(fnm env --use-on-cd --version-file-strategy=recursive --shell zsh)"
 # I'm so clumsy
 alias celar="echo door"
 
-# xclip
-alias to-clip="xclip -selection clipboard"
-
 # zoxide
 eval "$(zoxide init zsh)"
 alias cd="z"
+
+# nav
+alias l="ls -lah"
 
 # OSX like file explorer command
 function open(){
     nohup nautilus $1 >/dev/null 2>&1 &
 }
 
+function refresh-shell(){
+  source ${HOME}/.zshrc
+}
+
+# Podman
+alias docker="podman"
+if [ -S "/run/user/$(id -u)/podman/podman.sock" ]; then
+  export DOCKER_HOST="unix:///run/user/$(id -u)/podman/podman.sock"
+fi
+
+# Zed
+alias zed="zeditor"
+
 # ------------------------------- kubernetes -------------------------------- #
 compdef kubecolor=kubectl
 alias k="kubecolor"
-alias kctx="kubectx"
-
-# --------------------------------- python ---------------------------------- #
-# Poetry util
-function poetry-fix-lock(){
-    if [[ ! -d $1 ]]; then
-        echo "No folder passed as argument"
-        return 1
-    fi
-
-    poetry_projects=()
-    find_poetry_projects=$(find $1 -name "*pyproject.toml" -not -path "./.git/*" -exec dirname {} \;)
-
-    # Read each line into the array
-    while IFS= read -r file; do
-        poetry_projects+=("$file")
-    done <<< "$find_poetry_projects"
-
-    # User input for safeguard
-    echo "Found ${#poetry_projects[@]} poetry projects in $(readlink -f $1)"
-    echo "Proceed ? [y/n]"
-    read -r ANS
-
-    clean_ans=$(echo "$ANS" | tr '[:upper:]' '[:lower:]')
-    if [[ ${clean_ans:0:1} == "y" ]]; then
-        # Check and fix poetry projects
-        for poetry_project in ${poetry_projects[@]}; do
-            poetry_project_full=$(readlink -f $poetry_project)
-
-            echo "> checking ${poetry_project}"
-            poetry check --directory=$poetry_project_full || poetry lock --no-update --directory=$poetry_project_full
-        done
-    else
-        return 0
-    fi
-}
-
-# --------------------------------- docker ---------------------------------- #
-docker() {
-  case $1 in
-    ps)
-      shift
-      command dops "$@"
-      ;;
-    *)
-      command docker "$@";;
-  esac
-}
 
 # ----------------------------------- git ----------------------------------- #
 function git-list-untracked() {
-    git fetch --prune && git branch -r | awk "{print \$1}" | grep -E -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print \$1}"
+  git fetch --prune && git branch -r | awk "{print \$1}" | grep -E -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print \$1}"
 }
 
 function git-remove-untracked(){
@@ -139,5 +223,19 @@ function glab-export-env(){
 }
 
 # ---------------------------------- local ---------------------------------- #
-source ~/.zshrc.local
+local_zshrc="${HOME}/.zshrc.local"
+if [ -x $local_zshrc ];then
+    source $local_zshrc
+fi
 
+# ----------------------------------- go ------------------------------------ #
+# GVM (Go Version Manager)
+if [ -x "$HOME/bin/gvm" ]; then
+    eval "$(gvm env)"
+fi
+
+fpath+=~/.zfunc; autoload -Uz compinit; compinit
+
+[[ -s "/home/clement/.gvm/scripts/gvm" ]] && source "/home/clement/.gvm/scripts/gvm"
+
+[[ -s "/home/unhidden/.gvm/scripts/gvm" ]] && source "/home/unhidden/.gvm/scripts/gvm"

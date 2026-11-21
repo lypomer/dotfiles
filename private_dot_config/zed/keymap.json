@@ -1,0 +1,37 @@
+[
+  {
+    "context": "Terminal",
+    "bindings": {
+      "shift-enter": ["terminal::SendText", "\u001b\r"],
+    },
+  },
+  {
+    "bindings": {
+      "ctrl-@": "agent::Toggle",
+    },
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "alt-shift-pageup": "editor::DuplicateLineUp"
+    }
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "ctrl-alt-shift-up": "editor::DuplicateLineUp"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "alt-shift-pagedown": "editor::DuplicateLineDown"
+    }
+  },
+  {
+    "context": "Editor",
+    "unbind": {
+      "ctrl-alt-shift-down": "editor::DuplicateLineDown"
+    }
+  }
+]

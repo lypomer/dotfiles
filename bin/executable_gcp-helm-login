@@ -1,0 +1,8 @@
+#!/bin/bash
+
+region=${1:-"europe-west1"}
+
+echo -e "🛳️  Login into ${region} helm registry..."
+output=$(gcloud auth print-access-token | helm registry login -u oauth2accesstoken --password-stdin ${region}-docker.pkg.dev 2>&1) \
+  && echo "🎉 ${output}" \
+  || echo "❌ ${output}"

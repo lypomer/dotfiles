@@ -1,0 +1,161 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  // Misc
+  "agent_servers": {
+    "claude-acp": {
+      "default_config_options": {
+        "mode": "default"
+      },
+      "type": "registry"
+    }
+  },
+  "cli_default_open_behavior": "new_window",
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
+  "terminal": {
+    "working_directory": "current_project_directory",
+  },
+
+  // Theming
+  "buffer_font_family": "MesloLGSDZ Nerd Font Propo",
+  "buffer_font_size": 13.0,
+  "buffer_font_weight": 100.0,
+  "ui_font_family": "MesloLGSDZ Nerd Font Propo",
+  "ui_font_size": 14.0,
+  "ui_font_weight": 150.0,
+  "theme": "Catppuccin Espresso (Blur) [Heavy]",
+  "icon_theme": "Material Icon Theme",
+
+  // Panels
+  "project_panel": {
+    "dock": "left",
+  },
+  "outline_panel": {
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "git_panel": {
+    "dock": "left",
+  },
+  "active_pane_modifiers": {
+    "inactive_opacity": 1.0,
+  },
+
+  // AI
+  "agent": {
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": [],
+    "terminal_init_command": "claude",
+  },
+
+  // Title
+  "title_bar": {
+    "show_branch_status_icon": true,
+    "show_onboarding_banner": true,
+    "show_sign_in": false,
+    "show_menus": false,
+  },
+
+  // Tabs
+  "tabs": {
+    "activate_on_close": "neighbour",
+    "show_diagnostics": "off",
+    "file_icons": true,
+    "git_status": true,
+  },
+  "tab_bar": {
+    "show_pinned_tabs_in_separate_row": true,
+    "show": true,
+  },
+
+  // Editor
+  "diagnostics": {
+    "inline": {
+      "enabled": true,
+      "update_debounce_ms": 150,
+      "padding": 4,
+      "min_column": 0,
+      "max_severity": null,
+    },
+  },
+  "diff_view_style": "split",
+  "ensure_final_newline_on_save": true,
+  "minimap": {
+    "max_width_columns": 40,
+    "show": "always",
+  },
+  "modeline_lines": 0,
+  "soft_wrap": "none",
+  "sticky_scroll": {
+    "enabled": true,
+  },
+  "tab_size": 2,
+
+  // Languages specifics
+  "file_types": {
+    "Helm": [
+      "**/templates/**/*.yaml",
+      "**/templates/**/*.yml",
+      "**/templates/**/*.tpl",
+      "**/*.tpl",
+    ],
+    "Dockerfile": ["**/Dockerfile*"],
+    "JSON": ["**/.releaserc"],
+    "TOML": ["**/.sqlfluff"],
+  },
+  "languages": {
+    "Python": {
+      "tab_size": 4,
+      "format_on_save": "on",
+      "formatter": {
+        "language_server": {
+          "name": "ruff",
+        },
+      },
+    },
+    "YAML": {
+      "auto_indent": "preserve_indent",
+      "auto_indent_on_paste":false
+    }
+  },
+  "lsp": {
+    "yaml-language-server": {
+      "settings": {
+        "yaml": {
+          "keyOrdering": false,
+          "schemas": {
+            "https://raw.githubusercontent.com/chainguard-dev/melange/main/pkg/config/schema.json": [
+              "/melange-packages/*.yaml",
+            ],
+          },
+        },
+      },
+    },
+  },
+
+  // AI
+  "edit_predictions": {
+    "open_ai_compatible_api": {
+      "model": ""
+    },
+    "mode": "subtle",
+    "allow_data_collection": "no",
+    "provider": "ollama",
+    "ollama": {
+      "api_url": "http://localhost:11434",
+      "model": "codegemma:2b",
+    },
+  }
+}

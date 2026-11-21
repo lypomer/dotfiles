@@ -1,4 +1,4 @@
-format = '$os$all$kubernetes$cmd_duration$line_break$character'
+format = '$os$all$cmd_duration$fill$gcloud$kubernetes$line_break$character'
 
 [aws]
 symbol = "  "
@@ -46,11 +46,21 @@ symbol = " "
 [fennel]
 symbol = " "
 
+[fill]
+symbol=" "
+
 [fossil_branch]
 symbol = " "
 
 [gcloud]
-disabled = true
+symbol = ' '
+# format = '[$symbol($project)(\($region\))]($style) '
+format = '[$symbol($project)]($style) '
+style = "blue"
+disabled = false
+
+[gcloud.region_aliases]
+europe-west1 = 'eu-west1'
 
 [git_branch]
 # symbol = " "
@@ -62,14 +72,21 @@ tag_disabled = false
 tag_symbol = ' 🔖'
 
 [git_status]
-format = '([\[$all_status$ahead_behind\]]($style) )'
-conflicted = "💀"
-ahead = '⇡${count}'
-behind = '⇣${count}'
-diverged = '⇕⇡${ahead_count}⇣${behind_count}'
-stashed = "🎒"
-modified = "🔧"
-deleted = "🗑️ "
+format = '([$all_status$ahead_behind]($style) )'
+style = 'bold bright-black'
+# conflicted = "💀"
+# conflicted = " "
+conflicted = " "
+ahead = ' ${count}'
+behind = ' ${count}'
+diverged = ' ${ahead_count} ${behind_count}'
+staged = ' '
+# stashed = '🎒'
+stashed = ' '
+modified = ' '
+deleted = ' '
+renamed = ' '
+untracked = ' '
 
 [golang]
 symbol = " "
@@ -87,7 +104,6 @@ symbol = " "
 detect_files = ['values.yaml.gotmpl', 'helmfile.yaml', 'Chart.yaml']
 disabled = true
 
-
 [hg_branch]
 symbol = " "
 
@@ -104,9 +120,17 @@ symbol = " "
 symbol = " "
 
 [kubernetes]
-format = 'on [$context \($namespace\)](purple) '
-disabled = true
-detect_files = ['values.yaml.gotmpl', 'helmfile.yaml', 'Chart.yaml']
+format = '[/](dimmed black) [$symbol$context | 󱁐 $namespace](purple) '
+disabled = false
+# detect_env_vars = ['STARSHIP_KUBE_TERMINAL']
+
+[[kubernetes.contexts]]
+# Using capture groups
+# Contexts from GKE, AWS and other cloud providers usually carry additional information, like the region/zone.
+# The following entry matches on the GKE format (`gke_projectname_zone_cluster-name`)
+# and renames every matching kube context into a more readable format (`gke-cluster-name`):
+context_pattern = "gke_ornikar-(?P<project>[\\w-]+)_.*_(?P<cluster>[\\w-]+)"
+context_alias = "$project"
 
 [lua]
 symbol = " "
@@ -143,6 +167,7 @@ Android = " "
 # Arch = " "
 Arch = "🌊"
 Artix = " "
+CachyOS = " "
 CentOS = " "
 Debian = " "
 DragonFly = " "
@@ -176,6 +201,7 @@ Redox = "󰀘 "
 Solus = "󰠳 "
 SUSE = " "
 Ubuntu = " "
+# Ubuntu = "🌊"
 Unknown = " "
 Void = " "
 Windows = "󰍲 "
@@ -214,6 +240,7 @@ symbol = " "
 [terraform]
 format = '[$symbol\($version\) $workspace]($style) '
 symbol = "󱁢 "
+detect_files = ['.terraformignore']
 detect_folders = ['terraform', '.terraform']
 
 [zig]

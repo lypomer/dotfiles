@@ -1,0 +1,40 @@
+[colors]
+  [colors.primary]
+  background = "#000000"
+  foreground = "#cdd6f4"
+
+  [colors.cursor]
+  text = "#cba6f7"
+  cursor = "#cba6f7"
+
+  # Normal colors
+  [colors.normal]
+  black   = '#11111b'
+  red     = '#ec7486'
+  green   = '#a6da95'
+  yellow  = '#eed49f'
+  blue    = '#4f87f7'
+  magenta = '#cba6f7'
+  cyan    = '#b7bdf8'
+  white   = '#bac2de'
+
+  # Bright colors
+  [colors.bright]
+  black   = '#585b70'
+  red     = '#eba0ac'
+  green   = '#8ccf7f'
+  yellow  = '#f9e2af'
+  blue    = '#89dceb'
+  magenta = '#f5c2e7'
+  cyan    = '#b4befe'
+  white   = '#bac2de'
+
+  [colors.dim]
+  black   = '#585b70'
+  red     = '#eba0ac'
+  green   = '#8ccf7f'
+  yellow  = '#9B7054'
+  blue    = '#89dceb'
+  magenta = '#f5c2e7'
+  cyan    = '#b4befe'
+  white   = '#bac2de'

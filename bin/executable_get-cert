@@ -1,0 +1,6 @@
+#!/bin/bash
+
+domain=${1:?Domain cannot be empty}
+port=${2:-443}
+echo "checking certificate for ${domain} on port ${port}..."
+echo | openssl s_client -showcerts -servername ${domain} -connect ${domain}:${port} 2>/dev/null | openssl x509 -inform pem -noout -text

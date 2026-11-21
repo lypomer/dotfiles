@@ -1,0 +1,59 @@
+#!/bin/bash
+
+# ---------------- Commons ---------------- #
+socket_service="podman.socket"
+
+# --------------- Functions --------------- #
+status_rtlss_podman() {
+  systemctl --user --now status ${socket_service}
+}
+
+status_rtlss_podman_light() {
+  status_rtlss_podman | grep --color=never "Active:" | cut -d ":" -f 2-
+}
+
+start_rtlss_podman() {
+  podman_rtlss_status=$(status_rtlss_podman_light)
+  if [[ ${podman_rtlss_status} =~ "(listening)" ]];then
+    echo "Podman rootless already running"
+    echo "└──${podman_rtlss_status}"
+    return 0
+  fi
+
+  echo "Enabling Podman rootless..."
+  systemctl --user --now enable ${socket_service}
+
+  podman_rtlss_status=$(status_rtlss_podman_light)
+  echo "└──${podman_rtlss_status}"
+}
+
+stop_rtlss_podman() {
+  systemctl stop --user ${socket_service}
+  podman_rtlss_status=$(status_rtlss_podman_light)
+  echo "Podman rootless stopped"
+  echo "└──${podman_rtlss_status}"
+}
+
+usage() {
+  echo "⫍  Manage Podman rootless socket service ⫎"
+  echo "Usage: ${0#*./} <start|status|stop>"
+}
+
+# --------------- Entrypoint -------------- #
+case $1 in
+  "start")
+    start_rtlss_podman
+    ;;
+
+  "status")
+    status_rtlss_podman
+    ;;
+
+  "stop")
+    stop_rtlss_podman
+    ;;
+
+  *)
+    usage
+    ;;
+esac
