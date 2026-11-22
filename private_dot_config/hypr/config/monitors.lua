@@ -9,7 +9,7 @@
 
 hl.monitor({
     output    = MONITOR1,
-    mode      = "preferred",
+    mode      = "highres",
     position  = "auto",
     scale     = "auto",
 })

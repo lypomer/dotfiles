@@ -1,6 +1,6 @@
 [user]
-  name =
-  email =
+  name = lypomer
+  email = "22705457+lypomer@users.noreply.github.com"
 [core]
   editor = zed --wait
 [diff]
